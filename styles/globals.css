@@ -82,3 +82,32 @@ main {
 .menu-icon {
   margin-left: 8px;
 }
+
+.tariff-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.tariff-card {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 16px;
+  width: 200px;
+}
+
+.tariff-card .price {
+  font-weight: bold;
+  margin: 8px 0;
+}
+
+.tariff-card .note {
+  font-size: 0.9em;
+  color: #555;
+  margin-bottom: 8px;
+}
+
+.tariff-card.inactive {
+  opacity: 0.5;
+}
