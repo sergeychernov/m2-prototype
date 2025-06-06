@@ -60,6 +60,26 @@ export default function ChatBot({ dialogSequence, title, initialMessagesCount = 
     proceedToNextMessage();
   };
 
+  const deleteLastMessage = () => {
+    setMessages((prevMessages) => {
+      if (prevMessages.length === 0) return [];
+
+      const lastMessage = prevMessages[prevMessages.length - 1];
+      const newMessages = prevMessages.slice(0, -1);
+
+      // Если последнее сообщение было от бота и оно из dialogSequence,
+      // то нужно откатить dialogIndex, чтобы это сообщение могло быть показано снова.
+      // Это упрощенная логика, предполагающая, что сообщения бота из dialogSequence не повторяются.
+      if (lastMessage.sender === 'bot') {
+        const lastDialogMessage = dialogSequence[dialogIndex.current - 1];
+        if (lastDialogMessage && lastDialogMessage.text === lastMessage.text) {
+          dialogIndex.current--;
+        }
+      }
+      return newMessages;
+    });
+  };
+
   useEffect(() => {
     setMessages([]);
     dialogIndex.current = 0;
@@ -73,7 +93,12 @@ export default function ChatBot({ dialogSequence, title, initialMessagesCount = 
 
   return (
     <div className="chat-container">
-      <h3>{title}</h3>
+      <div className="chat-header">
+        <h3>{title}</h3>
+        <button onClick={deleteLastMessage} className="delete-last-message-button">
+          &#x2716; {/* Крестик */}
+        </button>
+      </div>
       <div className="messages" ref={containerRef}>
         {messages.map((msg, idx) => (
           <div key={idx} className={`message ${msg.sender}`}>
@@ -116,7 +141,26 @@ export default function ChatBot({ dialogSequence, title, initialMessagesCount = 
             text-align: center;
             padding: 10px;
             margin: 0;
-            border-bottom: 1px solid #eee;
+            /* border-bottom: 1px solid #eee; */ /* Убрали разделитель, т.к. header теперь flex */
+            flex-grow: 1; /* Чтобы заголовок занимал доступное место */
+        }
+        .chat-header {
+          display: flex;
+          align-items: center;
+          justify-content: space-between; /* Распределяет элементы по краям */
+          padding: 0 10px; /* Небольшой отступ для кнопки */
+          border-bottom: 1px solid #eee;
+        }
+        .delete-last-message-button {
+          background: none;
+          border: none;
+          font-size: 1.2em;
+          cursor: pointer;
+          padding: 5px;
+          color: #777;
+        }
+        .delete-last-message-button:hover {
+          color: #333;
         }
         .messages {
           flex-grow: 1;
