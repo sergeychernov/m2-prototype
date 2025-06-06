@@ -24,7 +24,7 @@ export default function Layout({ children }: Props) {
       <div className={`side-menu ${open ? 'open' : ''}`}>
         <Menu />
       </div>
-      <main>{children}</main>
+      <main className="content">{children}</main>
     </div>
   );
 }
