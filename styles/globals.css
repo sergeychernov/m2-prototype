@@ -50,3 +50,35 @@ body {
 main {
   padding: 20px;
 }
+
+.side-menu nav {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.menu-top,
+.menu-bottom {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu-bottom {
+  margin-top: auto;
+}
+
+.menu-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+}
+
+.menu-section-title {
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+.menu-icon {
+  margin-left: 8px;
+}
