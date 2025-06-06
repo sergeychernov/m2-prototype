@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 export default function Sekretar() {
   return (
     <div>
@@ -29,7 +31,7 @@ export default function Sekretar() {
             <li>Перехват диалога</li>
           </ul>
         </div>
-        <div className="tariff-card">
+        <Link href="/sekretar/connect-to-telegram/" className="tariff-card">
           <h2>Макси</h2>
           <p className="price">2999₽ в месяц</p>
           <p className="note">Первый месяц бесплатно</p>
@@ -40,7 +42,7 @@ export default function Sekretar() {
             <li>Расширенная аналитика</li>
             <li>Сайт-визитка</li>
           </ul>
-        </div>
+        </Link>
       </div>
     </div>
   );
