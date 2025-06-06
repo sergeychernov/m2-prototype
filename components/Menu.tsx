@@ -7,6 +7,7 @@ interface Item {
 }
 
 const popular: Item[] = [
+  { title: 'Секретарь', slug: '/sekretar', icon: '🤖' },
   { title: 'Ипотека', slug: '/ipoteka', icon: '💰' },
   { title: 'Сделка', slug: '/sdelka', icon: '📝' },
   { title: 'Защита сделки', slug: '/zashchita-sdelki', icon: '🛡️' },
