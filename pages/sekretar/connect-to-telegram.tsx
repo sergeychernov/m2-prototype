@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import Head from 'next/head';
+import { useRouter } from 'next/router'; // <--- Добавьте этот импорт
 
 export default function ConnectToTelegram() {
   const [token, setToken] = useState('');
   const [status, setStatus] = useState('');
+  const router = useRouter(); // <--- Инициализируйте useRouter
 
   const checkToken = () => {
     const t = token.trim();
@@ -25,6 +27,10 @@ export default function ConnectToTelegram() {
       return;
     }
     setStatus('🔗 Бот успешно подключён!');
+    // Добавляем задержку перед переходом, чтобы пользователь успел увидеть статус
+    setTimeout(() => {
+      router.push('/telegram'); // <--- Переход на страницу /telegram
+    }, 1000); // Задержка в 1 секунду (1000 миллисекунд)
   };
 
   return (
