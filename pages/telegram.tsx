@@ -16,8 +16,8 @@ export default function TelegramPage() {
     <Layout>
       <h1>Демонстрация чат-ботов</h1>
       <div style={{ display: 'flex', justifyContent: 'space-around', flexWrap: 'wrap' }}>
-        <ChatBot dialogSequence={realtorDialog} title="Чат риелтора" />
-        <ChatBot dialogSequence={sellerDialog} title="Чат продавца" />
+        <ChatBot dialogSequence={realtorDialog} title="Чат риелтора" initialMessagesCount={1} />
+        <ChatBot dialogSequence={sellerDialog} title="Чат продавца"  />
         <ChatBot dialogSequence={buyerDialog} title="Чат покупателя" />
       </div>
     </Layout>

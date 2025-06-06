@@ -15,9 +15,10 @@ export interface Message {
 interface ChatBotProps {
   dialogSequence: Message[];
   title: string;
+  initialMessagesCount?: number; // Новый параметр
 }
 
-export default function ChatBot({ dialogSequence, title }: ChatBotProps) {
+export default function ChatBot({ dialogSequence, title, initialMessagesCount = 0 }: ChatBotProps) {
   const [messages, setMessages] = useState<Message[]>([]);
   const inputRef = useRef<HTMLInputElement>(null);
   const dialogIndex = useRef(0);
@@ -38,10 +39,7 @@ export default function ChatBot({ dialogSequence, title }: ChatBotProps) {
         dialogIndex.current++;
       }, 500);
     } else {
-      setTimeout(
-        () => addMessage({ sender: 'bot', text: 'Спасибо! Если есть еще вопросы, спрашивайте.' }),
-        500,
-      );
+      addMessage({ sender: 'bot', text: 'Спасибо! Если есть еще вопросы, спрашивайте.' });
     }
   };
 
@@ -65,11 +63,13 @@ export default function ChatBot({ dialogSequence, title }: ChatBotProps) {
   useEffect(() => {
     setMessages([]);
     dialogIndex.current = 0;
-    if (dialogSequence.length > 0) {
-      addMessage(dialogSequence[0]);
-      dialogIndex.current = 1;
+    
+    // Показываем начальные сообщения в соответствии с initialMessagesCount
+    for (let i = 0; i < Math.min(initialMessagesCount, dialogSequence.length); i++) {
+      addMessage(dialogSequence[i]);
+      dialogIndex.current = i + 1;
     }
-  }, [dialogSequence]);
+  }, [dialogSequence, initialMessagesCount]);
 
   return (
     <div className="chat-container">
