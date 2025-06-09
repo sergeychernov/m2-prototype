@@ -6,7 +6,7 @@ interface Props {
 }
 
 export default function Layout({ children }: Props) {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false); // Оставляем open для полного открытия/скрытия текста
 
   const toggleMenu = () => {
     setOpen((prev) => !prev);
@@ -14,14 +14,14 @@ export default function Layout({ children }: Props) {
 
   return (
     <div className="layout">
-      <button className="menu-button" onClick={toggleMenu}>
-        Menu
-      </button>
+      {/* Кнопка Menu удалена */}
       <div
         className={`overlay ${open ? 'show' : ''}`}
         onClick={toggleMenu}
       />
-      <div className={`side-menu ${open ? 'open' : ''}`}>
+      {/* Добавляем класс collapsed по умолчанию, убираем его, когда open === true */}
+      {/* Добавляем onClick сюда */}
+      <div className={`side-menu ${open ? 'open' : 'collapsed'}`} onClick={toggleMenu}>
         <Menu />
       </div>
       <main className="content">{children}</main>

@@ -14,10 +14,34 @@ body {
   position: fixed;
   top: 0;
   left: 0;
-  width: 250px;
+  /* Начальная ширина для свернутого состояния */
+  width: 44px; /* Изменено на 44px */
   height: 100%;
   background: #fff;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
+  /* Убираем transform: translateX(-100%); т.к. меню всегда будет частично видно */
+  transition: width 0.3s ease; /* Анимируем изменение ширины */
+  z-index: 1001;
+  padding: 20px 0; /* Убираем горизонтальный padding, чтобы иконки были у края */
+  box-sizing: border-box;
+  overflow-x: hidden; /* Скрываем все, что не помещается по ширине */
+}
+
+.side-menu.open {
+  /* Ширина для полностью открытого состояния */
+  width: 250px;
+  padding: 20px; /* Возвращаем padding для открытого состояния */
+}
+
+/* Старый стиль для полного скрытия, если понадобится:
+.side-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 250px; 
+  height: 100%;
+  background: #fff;
+  box-shadow: 2px 0 5px rgba(0,0,0,0.3);
   transform: translateX(-100%);
   transition: transform 0.3s ease;
   z-index: 1001;
@@ -28,6 +52,7 @@ body {
 .side-menu.open {
   transform: translateX(0);
 }
+*/
 
 .overlay {
   position: fixed;
@@ -115,4 +140,32 @@ main {
 
 .tariff-card.inactive {
   opacity: 0.5;
+}
+
+
+/* Стили для контента внутри .side-menu, когда оно .collapsed */
+.side-menu.collapsed .menu-user,
+.side-menu.collapsed .menu-logo,
+.side-menu.collapsed .menu-section-title,
+.side-menu.collapsed .menu-link span:not(.menu-icon) {
+  display: none; /* Скрываем текст и ненужные элементы */
+}
+
+.side-menu.collapsed .menu-link {
+  justify-content: center; /* Центрируем иконку */
+  padding: 4px 0; /* Уменьшаем вертикальный padding, например, до 4px */
+}
+
+.side-menu.collapsed .menu-icon {
+  margin-right: 0; /* Убираем отступ у иконки */
+}
+
+.side-menu.collapsed .menu-header {
+    padding: 0 0 24px; /* Убираем горизонтальный padding у хедера */
+    display: flex; /* Для центрирования лого, если оно будет иконкой */
+    justify-content: center;
+}
+
+.side-menu.collapsed .menu-bottom {
+    padding-top: 16px;
 }
