@@ -32,7 +32,7 @@ export default function QuickSettings() {
 
   const saveSettings = () => {
     console.log('Сохранённые настройки:', settings);
-    router.push('/telegram');
+    router.push('/profil'); // Changed from '/telegram' to '/profil'
   };
 
   return (
