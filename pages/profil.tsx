@@ -309,6 +309,9 @@ export default function ProfilPage() {
           display: flex;
           flex-direction: column;
           align-items: center; /* Центрируем содержимое колонки телеграма */
+          background-color: #f0fff0; /* Honeydew - светло-зеленый/салатовый */
+          padding: 15px;
+          border-radius: 8px;
         }
         
         .contact-telegram-section { /* Этот класс больше не используется для общей компоновки, но может остаться для стилизации дочерних элементов, если нужно */
