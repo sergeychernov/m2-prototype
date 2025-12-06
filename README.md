@@ -39,3 +39,7 @@
 ```bash
 npm run lint
 ```
+
+## CircuitPython для RP2040-Zero
+
+В каталоге [`hardware/rp2040-zero`](hardware/rp2040-zero) добавлен минимальный пример для платы RP2040-Zero и краткая инструкция по загрузке CircuitPython и кода на устройство.
