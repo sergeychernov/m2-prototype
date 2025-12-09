@@ -1,7 +1,7 @@
 name: Deploy PR Preview to GitHub Pages
 on:
   pull_request:
-    types: [opened, synchronize]
+    types: [synchronize]
 permissions:
   contents: write
 jobs:
